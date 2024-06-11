@@ -1,0 +1,9 @@
+.left-side {
+  background: linear-gradient(
+    to bottom,
+    hsl(250, 56%, 13%),
+    hsl(278, 94%, 30%),
+    hsl(249, 99%, 64%),
+    hsl(250, 56%, 13%)
+  );
+}
