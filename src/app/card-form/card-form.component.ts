@@ -9,7 +9,7 @@ import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 })
 export class CardFormComponent {
   cardForm: FormGroup;
-
+  submitted: boolean = false;
   constructor() {
     this.cardForm = new FormGroup({
       Name: new FormControl('', Validators.required),
@@ -35,6 +35,6 @@ export class CardFormComponent {
   }
 
   Submit() {
-    console.log(this.cardForm.value);
+    this.submitted = true;
   }
 }

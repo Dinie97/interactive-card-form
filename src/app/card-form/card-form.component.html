@@ -1,7 +1,11 @@
 <!-- Content here -->
 <form [formGroup]="cardForm">
   <div class="row min-vh-100">
-    <div class="col-4 left-side align-items-center">
+    <div class="col-xl-4 col-sm-2 align-items-center p-0">
+      <img
+        class="position-absolute img-fluid"
+        src="../../assets/images/bg-main-desktop.png"
+      />
       <div class="position-absolute image-card">
         <div class="d-flex align-items-end justify-content-center flex-column">
           <div class="front-card">
@@ -67,7 +71,7 @@
       </div>
     </div>
     <div class="col-8 d-flex justify-content-center align-items-center">
-      <div class="w-50 position-relative">
+      <div *ngIf="!submitted" class="w-50 position-relative">
         <div class="row">
           <label>CARDHOLDER NAME</label>
           <div class="input-group my-2">
@@ -133,6 +137,24 @@
         </div>
         <div class="row my-4">
           <button class="btn btn-dark" (click)="Submit()">Confirm</button>
+        </div>
+      </div>
+      <div class="w-50 position-relative" *ngIf="submitted">
+        <div class="row">
+          <div
+            class="col-12 d-flex flex-column justify-content-center align-items-center"
+          >
+            <img
+              src="../../assets/images/icon-complete.svg"
+              class="img-fluid rounded mx-auto d-block"
+              alt="..."
+            />
+            <h1 class="my-4">THANK YOU!</h1>
+            <span class="text-muted">We've added your card details</span>
+          </div>
+        </div>
+        <div class="row my-4 px-4">
+          <button class="btn btn-dark" (click)="Submit()">Continue</button>
         </div>
       </div>
     </div>
