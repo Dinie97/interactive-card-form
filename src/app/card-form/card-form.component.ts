@@ -37,4 +37,9 @@ export class CardFormComponent {
   Submit() {
     this.submitted = true;
   }
+
+  Continue() {
+    this.submitted = false;
+    this.cardForm.reset();
+  }
 }
