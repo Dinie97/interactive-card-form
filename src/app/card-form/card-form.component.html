@@ -1,0 +1,108 @@
+<!-- Content here -->
+<form [formGroup]="cardForm">
+  <div class="row min-vh-100">
+    <div class="col-4 left-side align-items-center">
+      <div class="position-absolute image-card">
+        <div class="d-flex align-items-end justify-content-center flex-column">
+          <div class="front-card">
+            <div class="container">
+              <div class="position-absolute front-details w-100">
+                <div
+                  class="d-flex justify-content-center align-items-center mt-4 px-2"
+                >
+                  <div class="circle"></div>
+                  <div class="small-circle"></div>
+                </div>
+
+                <div
+                  class="d-flex flex-column justify-content-between w-75 px-4"
+                >
+                  <div class="row">
+                    <div class="col-12">
+                      <span class="display-6 text-white">
+                        {{ cardForm.value.CardNumber || "0000 0000 0000 0000" }}
+                      </span>
+                    </div>
+                  </div>
+                  <div class="d-flex justify-content-between my-4 w-100">
+                    <span class="text-white">
+                      {{ cardForm.value.Name || "Dinie Syahirah" | uppercase }}
+                    </span>
+                    <span class="text-white"
+                      >{{ cardForm.value.MMDate || "00" }}/{{
+                        cardForm.value.YYDate || "00"
+                      }}</span
+                    >
+                  </div>
+                </div>
+              </div>
+              <div class="image-container mx-auto">
+                <div class="container"></div>
+                <img
+                  src="../../assets/images/bg-card-front.png"
+                  class="img-fluid"
+                  alt="Front Card"
+                />
+              </div>
+            </div>
+          </div>
+          <div class="back-card">
+            <div
+              class="container d-flex justify-content-end align-items-center"
+            >
+              <span class="text-white position-absolute mx-5"
+                >{{ cardForm.value.CVC || "000" }}
+              </span>
+
+              <div class="image-container mx-auto">
+                <img
+                  class="img-fluid"
+                  alt="Back Card"
+                  src="../../assets/images/bg-card-back.png"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-8 d-flex justify-content-center align-items-center">
+      <div class="w-50 position-relative">
+        <div class="row">
+          <label>CARDHOLDER NAME</label>
+          <div class="input-group my-2">
+            <input class="form-control" formControlName="Name" />
+          </div>
+        </div>
+        <div class="row">
+          <label>CARD NUMBER</label>
+          <div class="input-group my-2">
+            <input
+              class="form-control"
+              formControlName="CardNumber"
+              (input)="splitCardNumber(cardForm.value.CardNumber)"
+            />
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-6">
+            <label>EXP. DATE (MM/YY)</label>
+            <div class="input-group my-2">
+              <input class="form-control" formControlName="MMDate" />
+              <input class="form-control mx-4" formControlName="YYDate" />
+            </div>
+          </div>
+          <div class="col-6">
+            <label>CVC</label>
+            <div class="input-group my-2">
+              <input class="form-control" formControlName="CVC" />
+            </div>
+          </div>
+        </div>
+        <div class="row my-4">
+          <button class="btn btn-dark" (click)="Submit()">Confirm</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
