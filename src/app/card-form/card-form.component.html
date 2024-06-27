@@ -1,7 +1,11 @@
 <!-- Content here -->
 <form [formGroup]="cardForm">
   <div class="row min-vh-100">
-    <div class="col-4 left-side align-items-center">
+    <div class="col-xl-4 col-md-4 col-sm-2 align-items-center p-0">
+      <img
+        class="position-absolute col-xl-4 col-md-4 col-sm-2 img-fluid"
+        src="../../assets/images/bg-main-desktop.png"
+      />
       <div class="position-absolute image-card">
         <div class="d-flex align-items-end justify-content-center flex-column">
           <div class="front-card">
@@ -19,7 +23,7 @@
                 >
                   <div class="row">
                     <div class="col-12">
-                      <span class="display-6 text-white">
+                      <span class="h2 text-white">
                         {{ cardForm.value.CardNumber || "0000 0000 0000 0000" }}
                       </span>
                     </div>
@@ -67,11 +71,15 @@
       </div>
     </div>
     <div class="col-8 d-flex justify-content-center align-items-center">
-      <div class="w-50 position-relative">
+      <div *ngIf="!submitted" class="w-50 position-relative">
         <div class="row">
           <label>CARDHOLDER NAME</label>
           <div class="input-group my-2">
-            <input class="form-control" formControlName="Name" />
+            <input
+              class="form-control"
+              formControlName="Name"
+              placeholder="e.g Dinie Syahirah"
+            />
           </div>
         </div>
         <div class="row">
@@ -80,6 +88,10 @@
             <input
               class="form-control"
               formControlName="CardNumber"
+              placeholder="e.g. 1234 5678 9012 3456"
+              type="text"
+              [pattern]="'^\\d{1,16}$'"
+              maxlength="19"
               (input)="splitCardNumber(cardForm.value.CardNumber)"
             />
           </div>
@@ -88,19 +100,61 @@
           <div class="col-6">
             <label>EXP. DATE (MM/YY)</label>
             <div class="input-group my-2">
-              <input class="form-control" formControlName="MMDate" />
-              <input class="form-control mx-4" formControlName="YYDate" />
+              <input
+                class="form-control"
+                formControlName="MMDate"
+                placeholder="MM"
+                type="text"
+                (input)="numsOnly($event)"
+                [pattern]="'^\\d{2}$'"
+                maxlength="2"
+              />
+              <input
+                class="form-control mx-4"
+                formControlName="YYDate"
+                placeholder="YY"
+                type="text"
+                (input)="numsOnly($event)"
+                [pattern]="'^\\d{2}$'"
+                maxlength="2"
+              />
             </div>
           </div>
           <div class="col-6">
             <label>CVC</label>
             <div class="input-group my-2">
-              <input class="form-control" formControlName="CVC" />
+              <input
+                class="form-control"
+                formControlName="CVC"
+                type="text"
+                (input)="numsOnly($event)"
+                [pattern]="'^\\d{2}$'"
+                maxlength="3"
+                placeholder="e.g. 123"
+              />
             </div>
           </div>
         </div>
         <div class="row my-4">
           <button class="btn btn-dark" (click)="Submit()">Confirm</button>
+        </div>
+      </div>
+      <div class="w-50 position-relative" *ngIf="submitted">
+        <div class="row">
+          <div
+            class="col-12 d-flex flex-column justify-content-center align-items-center"
+          >
+            <img
+              src="../../assets/images/icon-complete.svg"
+              class="img-fluid rounded mx-auto d-block"
+              alt="..."
+            />
+            <h1 class="my-4">THANK YOU!</h1>
+            <span class="text-muted">We've added your card details</span>
+          </div>
+        </div>
+        <div class="row my-4 px-4">
+          <button class="btn btn-dark" (click)="Continue()">Continue</button>
         </div>
       </div>
     </div>
