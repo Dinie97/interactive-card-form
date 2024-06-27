@@ -29,6 +29,11 @@ export class CardFormComponent {
     this.cardForm.get('CardNumber')?.setValue(splitValue);
   }
 
+  numsOnly(event: any) {
+    const input = event.target;
+    input.value = input.value.replace(/[^0-9]/g, '');
+  }
+
   Submit() {
     console.log(this.cardForm.value);
   }

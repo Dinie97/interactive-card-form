@@ -1,2 +1,11 @@
 /* You can add global styles to this file, and also import other style files */
 @import "~bootstrap/dist/css/bootstrap.css";
+@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap");
+
+::placeholder {
+  color: #666;
+}
+
+body {
+  font-family: "Space Grotesk", sans-serif;
+}

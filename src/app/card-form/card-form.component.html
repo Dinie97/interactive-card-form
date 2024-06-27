@@ -19,7 +19,7 @@
                 >
                   <div class="row">
                     <div class="col-12">
-                      <span class="display-6 text-white">
+                      <span class="h2 text-white">
                         {{ cardForm.value.CardNumber || "0000 0000 0000 0000" }}
                       </span>
                     </div>
@@ -71,7 +71,11 @@
         <div class="row">
           <label>CARDHOLDER NAME</label>
           <div class="input-group my-2">
-            <input class="form-control" formControlName="Name" />
+            <input
+              class="form-control"
+              formControlName="Name"
+              placeholder="e.g Dinie Syahirah"
+            />
           </div>
         </div>
         <div class="row">
@@ -80,6 +84,10 @@
             <input
               class="form-control"
               formControlName="CardNumber"
+              placeholder="e.g. 1234 5678 9012 3456"
+              type="text"
+              [pattern]="'^\\d{1,16}$'"
+              maxlength="19"
               (input)="splitCardNumber(cardForm.value.CardNumber)"
             />
           </div>
@@ -88,14 +96,38 @@
           <div class="col-6">
             <label>EXP. DATE (MM/YY)</label>
             <div class="input-group my-2">
-              <input class="form-control" formControlName="MMDate" />
-              <input class="form-control mx-4" formControlName="YYDate" />
+              <input
+                class="form-control"
+                formControlName="MMDate"
+                placeholder="MM"
+                type="text"
+                (input)="numsOnly($event)"
+                [pattern]="'^\\d{2}$'"
+                maxlength="2"
+              />
+              <input
+                class="form-control mx-4"
+                formControlName="YYDate"
+                placeholder="YY"
+                type="text"
+                (input)="numsOnly($event)"
+                [pattern]="'^\\d{2}$'"
+                maxlength="2"
+              />
             </div>
           </div>
           <div class="col-6">
             <label>CVC</label>
             <div class="input-group my-2">
-              <input class="form-control" formControlName="CVC" />
+              <input
+                class="form-control"
+                formControlName="CVC"
+                type="text"
+                (input)="numsOnly($event)"
+                [pattern]="'^\\d{2}$'"
+                maxlength="3"
+                placeholder="e.g. 123"
+              />
             </div>
           </div>
         </div>
